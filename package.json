@@ -8,7 +8,7 @@
     "bluebird": "^3.7.2",
     "convict": "^5.2.0",
     "lodash": "^4.17.15",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "request-promise": "^4.2.5",
     "transip": "^0.0.6"
   },
