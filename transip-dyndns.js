@@ -46,8 +46,6 @@ function main() {
   return Promise.all([checkCurrentDns(), checkCurrentWanIP()])
   .spread(function(currentDNSEntries, currentIP) {
 
-    console.log(currentDNSEntries);
-
     // Keep track of some data
     var foundDNS = false;
 
@@ -61,22 +59,22 @@ function main() {
 
         // Check if changed
         if(dnsEntry.content === currentIP) {
-          console.info('Nothing changed for '+ DNS_RECORD +' type '+ dnsEntry.type);
+          console.info('- Nothing changed for '+ DNS_RECORD +' type '+ dnsEntry.type);
           return;
         }
 
         switch (dnsEntry.type) {
 
           case 'A':
-            console.info('WAN has changed to:', currentIP);
+            console.info('- WAN has changed to:', currentIP);
             dnsEntry.content = currentIP;
             return updateDnsRecords(currentDNSEntries)
             .then(function() {
-              console.info('DNS record has been updated for type '+ dnsEntry.type);
+              console.info('- DNS record has been updated for type '+ dnsEntry.type);
             });
 
           default:
-            console.info('DNS not updated for type '+ dnsEntry.type);
+            console.info('- DNS not updated for type '+ dnsEntry.type);
 
         }
 
